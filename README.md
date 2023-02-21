@@ -1,4 +1,4 @@
-# Tesing database connectivity locally and on Azure
+# Testing database connectivity locally and on Azure
 
 [WORK IN PROGRESS - not complete yet]
 
