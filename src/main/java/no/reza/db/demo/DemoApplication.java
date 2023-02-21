@@ -19,7 +19,7 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		String sql = "SELECT NOW()";
-		System.out.println("\n#### Checking DB connection ####");
+		System.out.println("\n#### Checking DB connection ####\n");
 		System.out.println("\nSELECT NOW(): " + jdbcTemplate.queryForList(sql));
 		System.out.println("\n#### Success! ####\n");
 
