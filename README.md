@@ -6,7 +6,7 @@ Test basic setup with a simple Java Spring Boot application and PostgreSQL datab
 
 Key word here is __BASIC__. No Rest API, data mangement, persistense, data models, Hibernate etc... I've kept it as simple as I possibly can. I only want to test the following:
 
-__CAN THE JAVA APPLICATION CONNECT TO THE DATABASE across various environments?__
+__CAN THE JAVA APPLICATION CONNECT TO THE DATABASE ACROSS VARIOUS ENVIRONMENTS?__
 
 ## Requirements
 
