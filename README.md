@@ -27,9 +27,9 @@ Create the following environment variable:
 #### Local setup
 
 Open a terminal and run:
-* ``docker run --name localpostgresdb -p 5432:5432 -e POSTGRES_PASSWORD=<YOUR PASSWORD> -d postgres``
+* ``docker run --name localpostgresdb -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres``
 
-This will set up your local Postgres database called ``postgres``, with access given by user ``postgres`` and the password you supplied in the command. For the sake of simplicity, give it the passwod ``postgres``.
+This will set up your local Postgres database ``postgres``, with access given by user ``postgres``. For the sake of simplicity, we've given it the passwod ``postgres``. If you change any of this, remember to update ``application-dev.properties`` accordingly.
 
 Open a terminal and from the root folder of the project, run:
 
