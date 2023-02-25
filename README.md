@@ -65,7 +65,7 @@ Open a __NEW__ terminal to reset your environment and load the new variables and
 
 If done correctly, this should run the application and you should see it connect to the database on __Azure__:
 
-
+![Success!](images/azure_connection_success.png?raw=true "Azure connection success!")
 
 ### App Service
 
