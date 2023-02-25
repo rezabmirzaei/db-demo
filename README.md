@@ -59,7 +59,7 @@ URL to your database can be found on the ``Overview`` and the ``Connection strin
 To test connection to this database, first change your ENVIRONMENT variable to:
 * ENVIRONMENT=``prod`` (this will make Spring load ``application-prod.properties``)
 
-``application-prod.properties`` points to the above environment variables and the values of these should never be openly distriuted.
+``application-prod.properties`` points to the above environment variables and the values of these should never be openly distributed (e.g. checked into git).
 
 Open a __NEW__ terminal to reset your environment and load the new variables and values and from the root folder of the project, run:
 
