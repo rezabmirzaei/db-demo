@@ -61,7 +61,7 @@ To test connection to this database, first change your ENVIRONMENT variable to:
 
 ``application-prod.properties`` points to the above environment variables and the values of these should never be openly distributed (e.g. checked into git).
 
-Open a __NEW__ terminal to reset your environment and load the new variables and values and from the root folder of the project, run:
+Open a __NEW__ terminal to reset your environment and load the new variables and values, and from the root folder of the project run:
 
 * ``.\mvnw spring-boot:run``
 
