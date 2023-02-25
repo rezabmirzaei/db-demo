@@ -8,7 +8,7 @@ This project is used for teaching purposes only.
 
 ## Requirements
 
-* [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) and [Docker Hub](https://hub.docker.com/) account
+* [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) and [Docker Hub account](https://hub.docker.com/)
 * Java
 * Maven
 * [Azure account](https://azure.microsoft.com/en-us/free/) and [subscription](https://learn.microsoft.com/en-us/dynamics-nav/how-to--sign-up-for-a-microsoft-azure-subscription)
@@ -44,7 +44,7 @@ If done correctly, this should run the application and you should see it connect
 Log into your Azure account and create an [Azure Database for PostgreSQL - Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/quickstart-create-server-portal) as described in the linked documentation. During creation, under the ``Networking`` tab, make sure to:
 
 * Check ``Allow public access from any Azure service within Azure to this server`` (neccessary later for our app service)
-* Add your current client IP to the firewall
+* Add your current client IP to the firewall (so you can connect to it from you local environment)
 
 ![Azure DB Networking](images/azure_db_networking.png?raw=true "Azure DB Networking")
 
