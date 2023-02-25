@@ -1,17 +1,17 @@
 # Demonstrating database connectivity locally and on Azure
 
-Demonstrating connectivity between a simple Java Spring Boot application and PostgreSQL database locally and on Azure ([Postgresql Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/quickstart-create-server-portal)), configured with separate application[-env].properties. The database in Azure will demo as the production datasase.
+Demonstrating connectivity between a simple Java Spring Boot application and PostgreSQL database run locally and on Azure with ([Postgresql Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/quickstart-create-server-portal)). We will use separate application[-env].properties files to change our configuration (decide which database to use). The database in Azure will demo as the production datasase (all env-variables/credentials are masked).
 
-Key word here is __SIMPLE__. No Rest API, data mangement, persistense, data models, Hibernate etc... Kept as simple as possible:
+Key word here is __SIMPLE__. No Rest API, data mangement, persistense, data models, Hibernate etc. Only testing connectivity across multiple environments without exposing any secrets.
 
-__CAN THE JAVA APPLICATION CONNECT TO THE DATABASE ACROSS VARIOUS ENVIRONMENTS?__
+This project is used for teaching purposes only.
 
 ## Requirements
 
-* Docker Desktop and Docker Hub account
+* [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) and [Docker Hub](https://hub.docker.com/) account
 * Java
 * Maven
-* Azure account
+* [Azure account](https://azure.microsoft.com/en-us/free/) and [subscription](https://learn.microsoft.com/en-us/dynamics-nav/how-to--sign-up-for-a-microsoft-azure-subscription)
 
 ## Setup
 
@@ -22,7 +22,7 @@ Create the following environment variable:
 
 (more environment variables will be needed soon, after we create database in Azure)
 
-### PostreSQL database
+### PostgreSQL database
 
 #### Local setup
 
@@ -58,6 +58,8 @@ URL to your database can be found on the ``Overview`` and the ``Connection strin
 
 To test connection to this database, first change your ENVIRONMENT variable to:
 * ENVIRONMENT=``prod`` (this will make Spring load ``application-prod.properties``)
+
+``application-prod.properties`` points to the above environment variables and the values of these should never be openly distriuted.
 
 Open a __NEW__ terminal to reset your environment and load the new variables and values and from the root folder of the project, run:
 
