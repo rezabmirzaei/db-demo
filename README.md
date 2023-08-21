@@ -78,9 +78,9 @@ In Azure (same as above), create an [App Service](https://learn.microsoft.com/en
 
 During setup, when you come to the "Docker" stage, point to your Docker Hub repository and Docker image (this). See [this video for a good demo](https://www.youtube.com/watch?v=_LNOg8kU4CE).
 
-After the appservice is created, navigate to it and in the menu, select _Configuration_ > _Application Settings_. Add the environment variables from above as new application settings and save. This will automatically restart your App Service and the changes will take effect.
+Once the App Service is created, navigate to it and in the left hand menu, select _Configuration_ > _Application Settings_. Add the environment variables from above as new _Application settings_ and save. This will automatically restart your App Service and the changes will take effect.
 
-Check the applicaiton logs by going to the App Service, in the menu selecting _App Service logs_ or _Log stream_.
+Check the application logs by going to the App Service, in the left hand menu selecting _App Service logs_ or _Log stream_.
 
 Friendly pointer: Choose **West Europe** as region if cost is an issue. Often the cheapest alternative. See [pricing calculator](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/).
 
