@@ -13,57 +13,61 @@ This project is used for teaching purposes only.
 * Maven
 * [Azure account](https://azure.microsoft.com/en-us/free/) and [subscription](https://learn.microsoft.com/en-us/dynamics-nav/how-to--sign-up-for-a-microsoft-azure-subscription)
 
-## Setup
-
-### Environment
+## Local setup
 
 Create the following environment variable:
-* ENVIRONMENT=``dev`` (for local development, will make Spring load ``application-dev.properties``)
+* ENVIRONMENT=`dev` (for local development, will make Spring load `application-dev.properties`)
 
 (more environment variables will be needed soon, after we create database in Azure)
 
-### PostgreSQL database
-
-#### Local setup
-
+__HEADS UP__ Ignore the next step if you have a local instance of postgres running. Make sure to update the properties in [application-dev.properties](https://github.com/rezabmirzaei/db-demo/blob/main/src/main/resources/application-dev.properties) accordigly. 
 Open a terminal and run:
-* ``docker run --name localpostgresdb -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres``
+* `docker run --name localpostgresdb -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres`
 
-This will set up your local Postgres database ``postgres``, with access given by user ``postgres``. For the sake of simplicity, we've given it the passwod ``postgres``. If you change any of this, remember to update ``application-dev.properties`` accordingly.
+This will set up a local Postgres database `postgres`, with access given by user `postgres`. For the sake of simplicity, we've given it the passwod `postgres`. If you change any of this, remember to update `application-dev.properties` accordingly.
 
 Open a terminal and from the root folder of the project, run:
 
-* ``.\mvnw spring-boot:run``
+* `.\mvnw spring-boot:run`
 
 If done correctly, this should run the application and you should see it connect to the database:
 
 ![Success!](images/local_connection_success.png?raw=true "Local connection success!")
 
+#### Docker
+
+Create an image of the application and push it to your Docker Hub account (used later for deployment to Azure):
+
+* `docker build -t <YOUR_DOCKER_USERNAME>/db-demo .`
+* `docker push <YOUR_DOCKER_USERNAME>/db-demo`
+
 ## Setup on Azure
 
-Log into your Azure account and create an [Azure Database for PostgreSQL - Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/quickstart-create-server-portal) as described in the linked documentation. During creation, under the ``Networking`` tab, make sure to:
+This part assumes you have an active [Azure account](https://portal.azure.com/) and a valid [subscription](https://learn.microsoft.com/en-us/dynamics-nav/how-to--sign-up-for-a-microsoft-azure-subscription).
 
-* Check ``Allow public access from any Azure service within Azure to this server`` (neccessary later for our app service)
+Log into your Azure account and create an [Azure Database for PostgreSQL - Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/quickstart-create-server-portal) as described in the linked documentation. During creation, under the `Networking` tab, make sure to:
+
+* Check `Allow public access from any Azure service within Azure to this server` (neccessary later for our app service)
 * Add your current client IP to the firewall (so you can connect to it from you local environment)
 
 ![Azure DB Networking](images/azure_db_networking.png?raw=true "Azure DB Networking")
 
 Create the following environment values (locally):
 
-* POSTGRES_URL=``jdbc:postgresql://<URL TO YOUR POSTGRES DB ON AZURE>/<DATABASENAME>``
-* POSTGRES_USER=``<USERNAME YOU SUPPLIED WHILE CREATING THE DB>``
-* POSTGRES_PASSWORD=``<PASSWORD YOU SUPPLIED WHILE CREATING THE DB>``
+* POSTGRES_URL=`jdbc:postgresql://<URL TO YOUR POSTGRES DB ON AZURE>/<DATABASENAME>`
+* POSTGRES_USER=`<USERNAME YOU SUPPLIED WHILE CREATING THE DB>`
+* POSTGRES_PASSWORD=`<PASSWORD YOU SUPPLIED WHILE CREATING THE DB>`
 
-URL to your database can be found on the ``Overview`` and the ``Connection strings`` panes. DATABASENAME is by default ``postgres``.
+URL to your database can be found on the `Overview` and the `Connection strings` panes. DATABASENAME is by default `postgres`.
 
 To test connection to this database, first change your ENVIRONMENT variable to:
-* ENVIRONMENT=``prod`` (this will make Spring load ``application-prod.properties``)
+* ENVIRONMENT=`prod` (this will make Spring load `application-prod.properties`)
 
-``application-prod.properties`` points to the above environment variables and the values of these should never be openly distributed (e.g. checked into git).
+`application-prod.properties` points to the above environment variables and the values of these should __NEVER__ be openly distributed (e.g. checked into git).
 
 Open a __NEW__ terminal to reset your environment and load the new variables and values, and from the root folder of the project run:
 
-* ``.\mvnw spring-boot:run``
+* `.\mvnw spring-boot:run`
 
 If done correctly, this should run the application and you should see it connect to the database on __Azure__:
 
@@ -71,7 +75,13 @@ If done correctly, this should run the application and you should see it connect
 
 ### App Service
 
-[TODO]
+In Azure (same as above), create an [App Service](https://learn.microsoft.com/en-us/azure/app-service/) on Linux for Docker Container.
+
+During setup, when you come to the "Docker" stage, point to your Docker Hub repository and Docker image (this). See [this video for a good demo](https://www.youtube.com/watch?v=_LNOg8kU4CE).
+
+After the appservice is created, navigate to it and in the menu, select _Configuration_ > _Application Settings_. Add the environment variables from above as new application settings and save. This will automatically restart your App Service and the changes will take effect.
+
+Friendly pointer: Choose **West Europe** as region if cost is an issue. Often the cheapest alternative. See [pricing calculator](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/).
 
 ### NOTE
 
