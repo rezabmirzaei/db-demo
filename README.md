@@ -18,7 +18,8 @@ This project is used for teaching purposes only.
 Create the following environment variable:
 * ENVIRONMENT=`dev` (for local development, will make Spring load `application-dev.properties`)
 
-__HEADS UP!__ Ignore the next step if you have a local instance of PostgreSQL running. Make sure to update the properties in [application-dev.properties](https://github.com/rezabmirzaei/db-demo/blob/main/src/main/resources/application-dev.properties) accordingly. 
+__HEADS UP!__ Ignore the next step if you have a local instance of PostgreSQL running. If so, make sure to update the properties in [application-dev.properties](https://github.com/rezabmirzaei/db-demo/blob/main/src/main/resources/application-dev.properties) accordingly. 
+
 Open a terminal and run:
 * `docker run --name localpostgresdb -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres`
 
