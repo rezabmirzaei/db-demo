@@ -18,9 +18,7 @@ This project is used for teaching purposes only.
 Create the following environment variable:
 * ENVIRONMENT=`dev` (for local development, will make Spring load `application-dev.properties`)
 
-(more environment variables will be needed soon, after we create database in Azure)
-
-__HEADS UP__ Ignore the next step if you have a local instance of postgres running. Make sure to update the properties in [application-dev.properties](https://github.com/rezabmirzaei/db-demo/blob/main/src/main/resources/application-dev.properties) accordigly. 
+__HEADS UP!__ Ignore the next step if you have a local instance of postgres running. Make sure to update the properties in [application-dev.properties](https://github.com/rezabmirzaei/db-demo/blob/main/src/main/resources/application-dev.properties) accordingly. 
 Open a terminal and run:
 * `docker run --name localpostgresdb -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres`
 
@@ -30,18 +28,18 @@ Open a terminal and from the root folder of the project, run:
 
 * `.\mvnw spring-boot:run`
 
-If done correctly, this should run the application and you should see it connect to the database:
+If done correctly, this runs the application and you will see it connect to the local database:
 
 ![Success!](images/local_connection_success.png?raw=true "Local connection success!")
 
 #### Docker
 
-Create an image of the application and push it to your Docker Hub account (used later for deployment to Azure):
+Create an image of the application and push it to your Docker Hub account (used later for deployment to Azure). Open a terminal and from the root folder of the project, run:
 
 * `docker build -t <YOUR_DOCKER_USERNAME>/db-demo .`
 * `docker push <YOUR_DOCKER_USERNAME>/db-demo`
 
-## Setup on Azure
+## PostgreSQL on Azure with access from local machine
 
 This part assumes you have an active [Azure account](https://portal.azure.com/) and a valid [subscription](https://learn.microsoft.com/en-us/dynamics-nav/how-to--sign-up-for-a-microsoft-azure-subscription).
 
@@ -73,13 +71,15 @@ If done correctly, this should run the application and you should see it connect
 
 ![Success!](images/azure_connection_success.png?raw=true "Azure connection success!")
 
-### App Service
+## Azure App Service
 
 In Azure (same as above), create an [App Service](https://learn.microsoft.com/en-us/azure/app-service/) on Linux for Docker Container.
 
 During setup, when you come to the "Docker" stage, point to your Docker Hub repository and Docker image (this). See [this video for a good demo](https://www.youtube.com/watch?v=_LNOg8kU4CE).
 
 After the appservice is created, navigate to it and in the menu, select _Configuration_ > _Application Settings_. Add the environment variables from above as new application settings and save. This will automatically restart your App Service and the changes will take effect.
+
+Check the applicaiton logs by going to the App Service, in the menu selecting _App Service logs_ or _Log stream_.
 
 Friendly pointer: Choose **West Europe** as region if cost is an issue. Often the cheapest alternative. See [pricing calculator](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/).
 
